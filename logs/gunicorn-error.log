@@ -1,0 +1,454 @@
+/home/rana/pysnip/gunicorn_start: line 13: /home/rana/virtualenvironments/pysnip/bin/activate: No such file or directory
+/home/rana/pysnip/gunicorn_start: line 16: exec: gunicorn: not found
+/home/rana/pysnip/gunicorn_start: line 13: /home/rana/virtualenvironments/pysnip/bin/activate: No such file or directory
+/home/rana/pysnip/gunicorn_start: line 16: exec: gunicorn: not found
+/home/rana/pysnip/gunicorn_start: line 13: /home/rana/virtualenvironments/pysnip/bin/activate: No such file or directory
+/home/rana/pysnip/gunicorn_start: line 16: exec: gunicorn: not found
+/home/rana/pysnip/gunicorn_start: line 13: /home/rana/virtualenvironments/pysnip/bin/activate: No such file or directory
+/home/rana/pysnip/gunicorn_start: line 16: exec: gunicorn: not found
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 224, in run
+    handler()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 257, in handle_term
+    raise StopIteration
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/bin/gunicorn", line 8, in <module>
+    sys.exit(run())
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 231, in run
+    super().run()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 227, in run
+    self.halt()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 382, in stop
+    sock.close_sockets(self.LISTENERS, unlink)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/sock.py", line 212, in close_sockets
+    os.unlink(sock_name)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/rana/pysnip/gunicorn.sock'
+/home/rana/djangoprojects/pysnip/gunicorn_start: line 12: cd: /home/rana/pysnip: No such file or directory
+[2021-07-04 00:20:49 +0530] [3586] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+[2021-07-04 00:20:49 +0530] [3587] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+/home/rana/djangoprojects/pysnip/gunicorn_start: line 12: cd: /home/rana/pysnip: No such file or directory
+[2021-07-04 00:20:51 +0530] [3589] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+/home/rana/djangoprojects/pysnip/gunicorn_start: line 12: cd: /home/rana/pysnip: No such file or directory
+[2021-07-04 00:20:53 +0530] [3593] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+[2021-07-04 00:20:53 +0530] [3594] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 224, in run
+    handler()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 257, in handle_term
+    raise StopIteration
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/bin/gunicorn", line 8, in <module>
+    sys.exit(run())
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 231, in run
+    super().run()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 227, in run
+    self.halt()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 393, in stop
+    time.sleep(0.1)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+/home/rana/djangoprojects/pysnip/gunicorn_start: line 12: cd: /home/rana/pysnip: No such file or directory
+[2021-07-04 00:20:54 +0530] [3596] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+/home/rana/djangoprojects/pysnip/gunicorn_start: line 12: cd: /home/rana/pysnip: No such file or directory
+[2021-07-04 00:20:57 +0530] [3598] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+/home/rana/djangoprojects/pysnip/gunicorn_start: line 12: cd: /home/rana/pysnip: No such file or directory
+[2021-07-04 00:22:27 +0530] [3698] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+/home/rana/djangoprojects/pysnip/gunicorn_start: line 12: cd: /home/rana/pysnip: No such file or directory
+[2021-07-04 00:22:28 +0530] [3700] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+/home/rana/djangoprojects/pysnip/gunicorn_start: line 12: cd: /home/rana/pysnip: No such file or directory
+[2021-07-04 00:22:31 +0530] [3702] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+[2021-07-04 00:22:31 +0530] [3703] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+/home/rana/djangoprojects/pysnip/gunicorn_start: line 12: cd: /home/rana/pysnip: No such file or directory
+[2021-07-04 00:22:34 +0530] [3707] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+[2021-07-04 00:22:34 +0530] [3708] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 972, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pysnip'
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 202, in run
+    self.manage_workers()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 551, in manage_workers
+    self.spawn_workers()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 623, in spawn_workers
+    time.sleep(0.1 * random.random())
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rana/virtualenvironments/snip/bin/gunicorn", line 8, in <module>
+    sys.exit(run())
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 231, in run
+    super().run()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 229, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 393, in stop
+    time.sleep(0.1)
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/rana/virtualenvironments/snip/lib/python3.9/site-packages/gunicorn/arbiter.py", line 525, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+Invalid HTTP_HOST header: 'pythonsnippets.dev'. You may need to add 'pythonsnippets.dev' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: 'pythonsnippets.dev'. You may need to add 'pythonsnippets.dev' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: 'pythonsnippets.dev'. You may need to add 'pythonsnippets.dev' to ALLOWED_HOSTS.
+Bad Request: /
+Invalid HTTP_HOST header: 'pythonsnippets.dev'. You may need to add 'pythonsnippets.dev' to ALLOWED_HOSTS.
+Bad Request: /

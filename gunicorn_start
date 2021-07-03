@@ -1,0 +1,24 @@
+#!/bin/bash
+NAME="pysnip"
+DIR=/home/rana/djangoprojects/pysnip
+USER=rana
+GROUP=rana
+WORKERS=2
+BIND=unix:/home/rana/djangoprojects/pysnip/gunicorn.sock
+DJANGO_SETTINGS_MODULE=pysnip.settings
+DJANGO_WSGI_MODULE=pysnip.wsgi
+LOG_LEVEL=error
+
+cd $DIR
+source /home/rana/virtualenvironments/snip/bin/activate
+
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+exec gunicorn ${DJANGO_WSGI_MODULE}:application \
+ --name $NAME \
+ --workers $WORKERS \
+ --user=$USER \
+ --group=$GROUP \
+ --bind=$BIND \
+ --log-level=$LOG_LEVEL \
+ --log-file=-
+

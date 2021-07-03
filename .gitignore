@@ -2,3 +2,4 @@ pysnip/.env
 pysnip/__pycache__/
 snip/__pycache__/
 **/__pycache__/
+static/*
