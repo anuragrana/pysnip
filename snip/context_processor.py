@@ -12,5 +12,5 @@ def site(request):
     data["seo_keywords"] = settings.SEO_KEYWORDS
     data['site_description'] = settings.SITE_DESC
     data['site_image'] = settings.SITE_URL + os.path.join(settings.STATIC_URL,  "snip/zen-of-python.png")
-    print(data)
+    # print(data)
     return data

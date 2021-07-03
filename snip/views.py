@@ -65,7 +65,7 @@ def get_snippet(request, snippet_id):
     code = snippet.code
 
     result = highlight(code, lexer, formatter)
-    print(result)
+    # print(result)
 
     # TODO: store the highlighted code in DB once and reuse it
     template_data['highlighted_code'] = result
