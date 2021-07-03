@@ -27,9 +27,18 @@ environ.Env.read_env()
 SECRET_KEY = env("SECRET_KEY", default='django-insecure-p(sa&exo^8_c58#d!+n(n79+l+gzm3n!wk8#(&_hyamnxo27&t')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if env('ENVIRONMENT') == "prod":
+    DEBUG = True
+    ALLOWED_HOSTS = [
+        "https://pythonsnippets.dev",
+        "https://www.pythonsnippets.dev",
+        "pythonsnippets.dev",
+        "www.pythonsnippets.dev"
+    ]
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = ["*"]
 
-ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [

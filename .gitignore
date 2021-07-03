@@ -3,3 +3,5 @@ pysnip/__pycache__/
 snip/__pycache__/
 **/__pycache__/
 static/*
+logs/*.log
+logs
