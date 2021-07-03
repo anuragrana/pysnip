@@ -1,0 +1,63 @@
+{% extends 'snip/parent.html' %}
+
+{% block main %}
+<div class="row font-monospace">
+    <div class="col-md-6">
+        <div style="padding:10px;" class="pycolor">
+            Recent Snippets
+        </div>
+        <div style="padding:10px; font-size:90%" class="pycolor-reverse">
+            <ul class="list-group list-group-flush">
+                {% for snip in recent_snippets %}
+                <li class="list-group-item pycolor-reverse">
+                    <a href="{% url 'snip:snippet' snip.sid %}"
+                       style="text-decoration:none;">{{snip.title}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div style="padding:10px;" class="pycolor">
+            About
+        </div>
+        <div style="padding:10px; font-size:90%" class="pycolor-reverse">
+            What are we. What are we doing. What is the purpose of this website. etc.
+        </div>
+    </div>
+</div>
+
+<div class="row font-monospace" style="margin-top:10px;">
+    <div class="col-md-6">
+        <div style="padding:10px;" class="pycolor">
+            Top Rated Snippets
+        </div>
+        <div style="padding:10px; font-size:90%;" class="pycolor-reverse">
+            <ul class="list-group list-group-flush">
+                {% for snip in recent_snippets %}
+                <li class="list-group-item d-flex justify-content-between align-items-center pycolor-reverse">
+                    <a href="{% url 'snip:snippet' snip.sid %}"
+                       style="text-decoration:none;">{{snip.title}}</a>
+                    <!-- upvote count will be enabled later
+                    <span class="badge bg-primary rounded-pill" title="upvotes">14</span>
+                    -->
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div style="padding:10px;" class="pycolor">
+            Support Us
+        </div>
+        <div style="padding:10px;" class="pycolor-reverse">
+            Please support us by doing any of the below things: <br>
+            1. Visit the Amazon page<br>
+            2. Donate<br>
+            3. Create an account on DigitalOcean
+        </div>
+    </div>
+</div>
+
+
+{% endblock main %}

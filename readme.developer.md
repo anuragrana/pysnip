@@ -1,0 +1,17 @@
+Python Color Scheme:   
+https://www.schemecolor.com/python-logo-colors.php
+
+Pygments:  
+https://pygments.org/demo/#try
+
+Pygments implementation:  
+http://hilite.me/  
+(they provide API as well)
+
+
+Using env file for secrets:  
+https://djangocentral.com/environment-variables-in-django/
+
+Local Env:
+admin Password#999 admin@yopmail.com
+

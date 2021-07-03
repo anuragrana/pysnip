@@ -1,0 +1,72 @@
+{% extends 'snip/parent.html' %}
+
+{% block main %}
+
+<!-- this 12px padding is required so that code block and this block can be of same width -->
+<div style="padding: 0px 12px;">
+    <div class="row">
+        <div class="col-md-12 pycolor font-monospace"
+             style="padding: 10px 20px 2px 20px;">
+            <div style="font-size:150%;">
+                {{snippet.title}}
+            </div>
+        </div>
+    </div>
+
+    <!-- use IF condition here. if description is not available, don't show this row -->
+    <div class="row">
+        <div class="col-md-12 pycolor-reverse font-monospace"
+             style="padding: 10px 20px 10px 20px;">
+            {{snippet.description}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 pycolor font-monospace"
+             style="padding: 10px 20px 10px 20px;">
+            <div style="font-size:80%;">
+                Python Version: {{snippet.python_version}}
+                &nbsp;&nbsp;&nbsp;
+                Author: {{snippet.author}}
+                &nbsp;&nbsp;&nbsp;
+                Created Date: {{snippet.created_date}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" style="padding-top:20px;">
+    <div class="col-md-12">
+        <div style="overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;background-color:#111111;color:white;">
+            {% autoescape off %}
+            {{ highlighted_code }}
+            {% endautoescape %}
+        </div>
+    </div>
+</div>
+
+
+<div class="row" style="padding-top:20px;">
+    <div class="col-md-12 font-monospace">
+        <button class="btn btn-sm pycolor">Copy</button>
+        <a href="{% url 'snip:download_code_as_file' snippet.sid %}"
+           target="_blank"
+           class="btn btn-sm pycolor">Download as .py file</a>
+
+        <a href="{% url 'snip:download_code_as_image' snippet.sid %}"
+           target="_blank"
+           class="btn btn-sm pycolor">Download as PNG</a>
+
+        <a href="https://www.facebook.com/sharer.php?u={{page_canonical_url}}"
+           target="_blank"
+           class="btn btn-sm pycolor">Share on Facebook</a>
+
+        <a href="https://twitter.com/intent/tweet?text={{snippet.title}}&url={{page_canonical_url}}"
+           target="_blank"
+           class="btn btn-sm pycolor">Share on LinkedIn</a>
+    </div>
+</div>
+
+
+{% endblock main %}

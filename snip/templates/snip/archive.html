@@ -1,0 +1,30 @@
+{% extends 'snip/parent.html' %}
+
+{% block main %}
+<div class="row font-monospace" style="margin-top:10px;">
+    <div class="col-md-6">
+        <div style="padding:10px;" class="pycolor">
+            All Snippets
+        </div>
+        <div style="padding:10px; font-size:90%;" class="pycolor-reverse">
+            <ul class="list-group list-group-flush">
+                {% for snip in all_snippets %}
+                <li class="list-group-item pycolor-reverse">
+                    <a href="{% url 'snip:snippet' snip.sid %}"
+                       style="text-decoration:none;">{{snip.title}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <!-- reserved for future use -->
+        <div style="padding:10px;" class="pycolor">
+            Reserved for future use
+        </div>
+        <div style="padding:10px; font-size:90%;" class="pycolor-reverse">
+
+        </div>
+    </div>
+</div>
+{% endblock main %}
