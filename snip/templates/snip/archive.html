@@ -4,14 +4,14 @@
 <div class="row font-monospace" style="margin-top:10px;">
     <div class="col-md-6">
         <div style="padding:10px;" class="pycolor">
-            All Snippets
+            <i class="fa fa-list"></i> All Snippets
         </div>
         <div style="padding:10px; font-size:90%;" class="pycolor-reverse">
             <ul class="list-group list-group-flush">
                 {% for snip in all_snippets %}
                 <li class="list-group-item pycolor-reverse">
                     <a href="{% url 'snip:snippet' snip.sid %}"
-                       style="text-decoration:none;">{{snip.title}}</a>
+                       style="text-decoration:none;"><i class="fa fa-file-code-o"></i> {{snip.title}}</a>
                 </li>
                 {% endfor %}
             </ul>

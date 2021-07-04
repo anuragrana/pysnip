@@ -10,26 +10,6 @@ from pygments.formatters import HtmlFormatter, ImageFormatter
 
 from .models import SnippetModel
 
-code = """# METHOD 1
-import datetime
-start = datetime.datetime.now()
-# code
-print(datetime.datetime.now()-start)
-
-# METHOD 2
-import time
-start_time = time.time()
-main()
-print(f"Total Time To Execute The Code is {(time.time() - start_time)}" )
-
-# METHOD 3
-import timeit
-code = '''
-## Code snippet whose execution time is to be measured
-[2,6,3,6,7,1,5,72,1].sort()
-'''
-print(timeit.timeit(stmy = code,number = 1000))"""
-
 
 def index(request):
     template_name = "snip/index.html"

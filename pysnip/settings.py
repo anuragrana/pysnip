@@ -28,7 +28,7 @@ SECRET_KEY = env("SECRET_KEY", default='django-insecure-p(sa&exo^8_c58#d!+n(n79+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if env('ENVIRONMENT') == "prod":
-    DEBUG = True
+    DEBUG = False
     ALLOWED_HOSTS = [
         "https://pythonsnippets.dev",
         "https://www.pythonsnippets.dev",
