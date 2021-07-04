@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.conf import settings
 from django.http import HttpResponse
 from django.utils.text import slugify
-
+import random
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter, ImageFormatter
@@ -50,6 +51,9 @@ def get_snippet(request, snippet_id):
     template_name = "snip/snippet.html"
     template_data = dict()
 
+    snippet = SnippetModel.objects.get(sid=snippet_id)
+    # create 404 page
+
     lexer = get_lexer_by_name("python", stripall=True)
     formatter = HtmlFormatter(
         linenos='table',
@@ -59,9 +63,7 @@ def get_snippet(request, snippet_id):
         prestyles="padding-left:10px"  # for gap between line number and code
     )
 
-    snippet = SnippetModel.objects.get(sid=snippet_id)
-    # create 404 page
-
+    print(snippet)
     code = snippet.code
 
     result = highlight(code, lexer, formatter)
@@ -71,6 +73,41 @@ def get_snippet(request, snippet_id):
     template_data['highlighted_code'] = result
     template_data['snippet'] = snippet
     return render(request, template_name, template_data)
+
+
+def get_next_snippet(request, snippet_id):
+    # get the snippets with sid greater than current snippet_id ,
+    # order by sid in increasing order and then get first result
+    snippets = SnippetModel.objects.filter(sid__gt=snippet_id).order_by('sid')[:1]
+    if not snippets:
+        snippet = SnippetModel.objects.order_by('sid').first()
+    else:
+        snippet = snippets[0]
+
+    return redirect(reverse("snip:snippet", args=(snippet.sid,), kwargs={}))
+
+
+def get_previous_snippet(request, snippet_id):
+    # get the snippets with sid less than current snippet_id ,
+    # order by sid in decreasing order and then get first result
+    snippets = SnippetModel.objects.filter(sid__lt=snippet_id).order_by('-sid')[:1]
+    if not snippets:
+        snippet = SnippetModel.objects.order_by('sid').last()
+    else:
+        snippet = snippets[0]
+
+    return redirect(reverse("snip:snippet", args=(snippet.sid,), kwargs={}))
+
+
+def get_random_snippet(request, snippet_id):
+    total_count = SnippetModel.objects.all().count()
+    # get a random number less than total_count and then get the record after that offset
+    n = random.randint(0, total_count - 1)
+    print(n)
+    snippets = SnippetModel.objects.all()[n:n + 1]
+    snippet = snippets[0]
+
+    return redirect(reverse("snip:snippet", args=(snippet.sid,), kwargs={}))
 
 
 def download_code_as_file(request, snippet_id):

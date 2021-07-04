@@ -12,6 +12,10 @@ http://hilite.me/
 Using env file for secrets:  
 https://djangocentral.com/environment-variables-in-django/
 
-Local Env:
-admin Password#999 admin@yopmail.com
+Used fontawesome for fonts: 4.7 version:  
+https://fontawesome.com/v4.7/icons/
+
+Local Env:  
+admin `Password#999`  
+admin@yopmail.com
 

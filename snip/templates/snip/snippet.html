@@ -4,7 +4,7 @@
 
 <!-- this 12px padding is required so that code block and this block can be of same width -->
 <div style="padding: 0px 12px;">
-    <div class="row">
+    <div class="row" title="Snippet Title">
         <div class="col-md-12 pycolor font-monospace"
              style="padding: 10px 20px 2px 20px;">
             <div style="font-size:150%;">
@@ -14,12 +14,13 @@
     </div>
 
     <!-- use IF condition here. if description is not available, don't show this row -->
-    <div class="row">
-        <div class="col-md-12 pycolor-reverse font-monospace"
-             style="padding: 10px 20px 10px 20px;">
+    {% if snippet.description %}
+    <div class="row" title="Snippet Description">
+        <div class="col-md-12 pycolor-reverse font-monospace" style="padding: 10px 20px 10px 20px;">
             {{snippet.description}}
         </div>
     </div>
+    {% endif %}
 
     <div class="row">
         <div class="col-md-12 pycolor font-monospace"
@@ -42,35 +43,90 @@
             {% autoescape off %}
             {{ highlighted_code }}
             {% endautoescape %}
+            <textarea cols="20" rows="3" style="display:none;" id="raw_snippet">{{snippet.code}}</textarea>
         </div>
     </div>
 </div>
 
-
 <div class="row" style="padding-top:20px;">
-    <div class="col-md-12 font-monospace">
-        <button class="btn btn-sm pycolor">Copy</button>
+    <div class="col-md-12 font-monospace text-center">
+        <button class="btn btn-sm pycolor" onclick="copySnippet()">
+            Copy
+            <i class="fa fa-copy" id="copyIcon"></i>
+            <i class="fa fa-check" id="checkIcon" style="display:none;"></i>
+        </button>
+
         <a href="{% url 'snip:download_code_as_file' snippet.sid %}"
            target="_blank"
-           class="btn btn-sm pycolor">Download as .py file</a>
+           class="btn btn-sm pycolor">Download as .py file <i class="fa fa-download"></i></a>
 
         <a href="{% url 'snip:download_code_as_image' snippet.sid %}"
            target="_blank"
-           class="btn btn-sm pycolor">Download as PNG</a>
-
-        <a href="https://www.facebook.com/sharer.php?u={{page_canonical_url}}"
-           target="_blank"
-           class="btn btn-sm pycolor">Share on Facebook</a>
-
-        <a href="https://twitter.com/intent/tweet?text={{snippet.title}}&url={{page_canonical_url}}"
-           target="_blank"
-           class="btn btn-sm pycolor">Share on Twitter</a>
-
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{page_canonical_url}}&title={{snippet.title}}&summary={{snippet.description}}&source={{project_name_spaced}}"
-           target="_blank"
-           class="btn btn-sm pycolor">Share on LinkedIn</a>
+           class="btn btn-sm pycolor">Download as PNG <i class="fa fa-image"></i></a>
     </div>
 </div>
 
+<!-- share buttons -->
+<div class="row" style="padding-top:20px;">
+    <div class="col-md-12 font-monospace text-center">
+        <a href="https://www.facebook.com/sharer.php?u={{page_canonical_url}}"
+           target="_blank"
+           class="btn btn-sm pycolor">Share on Facebook <i class="fa fa-facebook-square"></i></a>
+
+        <a href="https://twitter.com/intent/tweet?text={{snippet.title}}&url={{page_canonical_url}}"
+           target="_blank"
+           class="btn btn-sm pycolor">Share on Twitter <i class="fa fa-twitter"></i></a>
+
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{page_canonical_url}}&title={{snippet.title}}&summary={{snippet.description}}&source={{project_name_spaced}}"
+           target="_blank"
+           class="btn btn-sm pycolor">Share on LinkedIn <i class="fa fa-linkedin-square"></i></a>
+    </div>
+</div>
+
+<div class="row" style="padding-top:20px;">
+    <div class="col-md-12 font-monospace text-center">
+        <a href="{% url 'snip:previous_snippet' snippet.sid %}"
+           class="btn btn-sm pycolor"><i class="fa fa-arrow-left"></i> Previous</a>
+
+        <a href="{% url 'snip:random_snippet' snippet.sid %}"
+           class="btn btn-sm pycolor">Random Snippet <i class="fa fa-random"></i></a>
+
+        <a href="{% url 'snip:next_snippet' snippet.sid %}"
+           class="btn btn-sm pycolor">Next <i class="fa fa-arrow-right"></i></a>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function copySnippet() {
+        // this textarea is hidden
+        var copyText = document.getElementById("raw_snippet");
+        // show the hidden textarea (for a moment) as hidden textarea doesnt work
+        copyText.style.display = 'block';
+        console.log(copyText);
+        /* Select the text field */
+        copyText.select();
+        // copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+        // hide back the text area
+        copyText.style.display = 'none';
+
+        // change btn icon
+        document.getElementById("copyIcon").style.display = "none";
+        document.getElementById("checkIcon").style.display = "inline";
+        // revert btn icons after 2 seconds
+        setTimeout(function() {
+            document.getElementById("copyIcon").style.display = "inline";
+            document.getElementById("checkIcon").style.display = "none";
+        }, 2000);
+
+    }
+
+
+
+</script>
 
 {% endblock main %}
