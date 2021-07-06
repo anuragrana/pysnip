@@ -7,6 +7,7 @@ import random
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter, ImageFormatter
+from django.contrib.auth import logout
 
 from .models import SnippetModel
 
@@ -126,3 +127,14 @@ def archive(request):
     template_name = 'snip/archive.html'
     template_data['all_snippets'] = SnippetModel.objects.all()
     return render(request, template_name, template_data)
+
+
+# Github after login send the request to callback URL which is set in application.
+# From there the request goes to LOGIN_REDIRECT_URL in settings.py
+def mylogin(request):
+    return redirect(reverse("snip:index", args=(), kwargs={}))
+
+
+def mylogout(request):
+    logout(request)
+    return redirect(reverse("snip:index", args=(), kwargs={}))

@@ -1,17 +1,65 @@
+{% load socialaccount %}
+{% load account %}
+
 <div class="row font-monospace" style="margin:0px 0px;background-color:#bbbbbb;">
-  <div class="col-md-12" style="padding:10px;">
-    <a href="{% url 'snip:index' %}" style="text-decoration:none;">
+    <div class="col-md-6" style="padding:10px;">
+        <a href="{% url 'snip:index' %}" style="text-decoration:none;">
     <span style="font-weight:bold;">
       <i class="fa fa-home" style="color:white;"></i>
       <span style="color:#306998;">Python</span><span style="color:#FFE873;">Snippets</span><span style="color:white;">.Dev</span>
     </span>
-    </a>
-    &nbsp;
-    &nbsp;
+        </a>
+        &nbsp;
+        &nbsp;
 
-    <a href="{% url 'snip:archive' %}" style="text-decoration:none;color:white;">
-      <i class="fa fa-archive"></i> Archive
-    </a>
-  </div>
+        <a href="{% url 'snip:archive' %}" style="text-decoration:none;color:white;">
+            <i class="fa fa-archive"></i> Archive
+        </a>
+    </div>
+
+
+    <div class="col-md-6 text-end" style="padding-top:7px;color:white;">
+        {% if user.is_authenticated %}
+        <div class="dropdown" style="display:inline-block;">
+            <button class="btn btn-sm pycolor-reverse dropdown-toggle"
+                    type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-user"></i> {{user.first_name }} {{user.last_name}}
+            </button>
+            <ul class="dropdown-menu pycolor-reverse"
+                aria-labelledby="dropdownMenuButton2" style="font-size:90%;">
+                <li>
+                    <a class="dropdown-item pycolor-reverse" href="{% url 'snip:mylogout' %}">
+                        Logout <i class="fa fa-sign-out"></i>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+        {% else %}
+        <div class="dropdown" style="display:inline-block;">
+            <button class="btn btn-sm pycolor-reverse dropdown-toggle"
+                    type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                Login
+            </button>
+            <ul class="dropdown-menu pycolor-reverse"
+                aria-labelledby="dropdownMenuButton1" style="font-size:90%;">
+                <li><a class="dropdown-item pycolor-reverse"
+                       href="{% provider_login_url 'github' %}">
+                    Login with GitHub <i class="fa fa-github"></i>
+                </a></li>
+
+                <li><a class="dropdown-item pycolor-reverse"
+                       href="{% provider_login_url 'linkedin_oauth2' %}">
+                    Login with LinkedIn <i class="fa fa-linkedin-square"></i>
+                </a></li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+
 </div>
 <div style="margin-bottom:10px;"></div>

@@ -13,3 +13,8 @@ urlpatterns = [
     path(r'download/text/<int:snippet_id>/', views.download_code_as_file, name='download_code_as_file'),
     path(r'download/image/<int:snippet_id>/', views.download_code_as_image, name='download_code_as_image'),
 ]
+
+urlpatterns += [
+    path(r'login/', views.mylogin, name='mylogin'),
+    path(r'logout/', views.mylogout, name='mylogout'),
+]
