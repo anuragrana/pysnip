@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -164,8 +165,6 @@ AUTHENTICATION_BACKENDS = (
 # https://github.com/settings/applications/1661252
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = "none"
-from django.urls import reverse_lazy
-
 LOGIN_REDIRECT_URL = reverse_lazy('snip:mylogin')
 ACCOUNT_LOGOUT_ON_GET = True
 
@@ -193,3 +192,6 @@ SOCIALACCOUNT_PROVIDERS = {
 # same email can not be twice in email-address table. Hence there will be no email address against
 # second user created with same emailId.
 
+
+# LOGIN_URL = '/accounts/login/' is used by login_required decorator
+LOGIN_URL = reverse_lazy('snip:mylogin')

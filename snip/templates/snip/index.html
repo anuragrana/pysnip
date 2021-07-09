@@ -6,10 +6,10 @@
         <div style="padding:10px;" class="pycolor">
             <i class="fa fa-archive"></i> Recent Snippets
         </div>
-        <div style="padding:10px; font-size:90%" class="pycolor-reverse">
+        <div style="padding:10px; font-size:90%" class="">
             <ul class="list-group list-group-flush">
                 {% for snip in recent_snippets %}
-                <li class="list-group-item pycolor-reverse">
+                <li class="list-group-item ">
                     <a href="{% url 'snip:snippet' snip.sid %}"
                        style="text-decoration:none;">
                         <i class="fa fa-file-code-o"></i> {{snip.title}}
@@ -23,10 +23,10 @@
         <div style="padding:10px;" class="pycolor">
             <i class="fa fa-star"></i> Top Rated Snippets
         </div>
-        <div style="padding:10px; font-size:90%;" class="pycolor-reverse">
+        <div style="padding:10px; font-size:90%;" class="">
             <ul class="list-group list-group-flush">
                 {% for snip in recent_snippets %}
-                <li class="list-group-item d-flex justify-content-between align-items-center pycolor-reverse">
+                <li class="list-group-item d-flex justify-content-between align-items-center ">
                     <a href="{% url 'snip:snippet' snip.sid %}"
                        style="text-decoration:none;">
                         <i class="fa fa-file-code-o"></i> {{snip.title}}
@@ -47,7 +47,7 @@
         <div style="padding:10px;" class="pycolor">
             <i class="fa fa-users"></i> About
         </div>
-        <div style="padding:10px; font-size:90%" class="pycolor-reverse">
+        <div style="padding:10px; font-size:90%" class="">
             Coming soon.
         </div>
     </div>
@@ -55,7 +55,7 @@
         <div style="padding:10px;" class="pycolor">
             <i class="fa fa-thumbs-up"></i> Support Us
         </div>
-        <div style="padding:10px;font-size:90%" class="pycolor-reverse">
+        <div style="padding:10px;font-size:90%" class="">
             Please help us keeping this website ads free. <br>
             Support us by: <br>
             1. Visiting the <a href="https://amzn.to/3hsbf1O" target="_blank">Amazon</a> using this

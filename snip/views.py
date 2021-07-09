@@ -8,6 +8,7 @@ from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter, ImageFormatter
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 from .models import SnippetModel
 
@@ -138,3 +139,37 @@ def mylogin(request):
 def mylogout(request):
     logout(request)
     return redirect(reverse("snip:index", args=(), kwargs={}))
+
+
+@login_required
+def add_snippet(request):
+    template_name = "snip/add_snippet.html"
+    template_data = dict()
+    if request.method == "GET":
+        return render(request, template_name, template_data)
+
+    # if post request
+    post_data = request.POST.copy()
+
+    # add all elements from post data to template data
+    template_data.update(post_data)
+
+    title = post_data.get('title')
+    description = post_data.get('description')
+    code = post_data.get('code')
+    author = post_data.get('author')
+    python_version = post_data.get('python_version')
+
+    if not all([title, code, author, python_version]):
+        # TODO: use messaging here
+        return render(request, template_name, template_data)
+
+    snippet = SnippetModel()
+    snippet.title = title
+    snippet.description = description
+    snippet.code = code
+    snippet.author = author
+    snippet.python_version = python_version
+    snippet.save()
+
+    return redirect(reverse("snip:snippet", args=(snippet.sid,), kwargs={}))

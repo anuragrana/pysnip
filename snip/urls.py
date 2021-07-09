@@ -6,6 +6,7 @@ urlpatterns = [
     path(r'', views.index, name='index'),
     path(r'home/', views.index, name='home'),
     path(r'archive/', views.archive, name='archive'),
+    path(r'snippet/new/', views.add_snippet, name='add_snippet'),
     path(r'snippet/<int:snippet_id>/', views.get_snippet, name='snippet'),
     path(r'snippet/next/<int:snippet_id>/', views.get_next_snippet, name='next_snippet'),
     path(r'snippet/previous/<int:snippet_id>/', views.get_previous_snippet, name='previous_snippet'),

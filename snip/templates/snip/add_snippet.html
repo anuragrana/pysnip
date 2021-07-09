@@ -1,0 +1,51 @@
+{% extends 'snip/parent.html' %}
+{% block main %}
+
+<div class="row font-monospace pycolor mb-3" style="margin:0px 0px; padding:5px;">
+    <div class="col-md-12">
+        Add A Snippet
+    </div>
+</div>
+
+<div class="row font-monospace" style="font-size:90%;">
+    <div class="col-md-12">
+        <form method="post" action="{% url 'snip:add_snippet' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control form-control-sm"
+                       id="title" name="title" maxlength="125" required value="{{title}}">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control form-control-sm"
+                       id="description" name="description" maxlength="1024" value="{{description}}">
+            </div>
+            <div class="mb-3">
+                <label for="code" class="form-label">Code</label>
+                <textarea rows="4" class="form-control form-control-sm"
+                          id="code" name="code" maxlength="5000" required>{{code}}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="Author" class="form-label">Author</label>
+                <input type="text" class="form-control form-control-sm"
+                       id="author" name="author" maxlength="125" value="{{author}}">
+            </div>
+            <div class="mb-3">
+                <label for="python_version" class="form-label">Python Version</label>
+                <select class="form-control form-control-sm" id="python_version" name="python_version" aria-describedby="versionHelp">>
+                    <option value="2.7">2.7</option>
+                    <option value="3.0" selected>3.0</option>
+                    <option value="3.5">3.5</option>
+                    <option value="3.6">3.6</option>
+                    <option value="3.9">3.9</option>
+                </select>
+                <div id="versionHelp" class="form-text">Maximum python version this code can run on.</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm pycolor">Submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock main %}

@@ -29,7 +29,7 @@ class SnippetModel(models.Model):
     code = models.TextField(null=False, blank=False)
     image = models.ImageField(upload_to=upload_path, null=True, blank=True, max_length=1000)
     # Name of the Author
-    author = models.CharField(null=False, blank=True, max_length=250)
+    author = models.CharField(null=False, blank=True, max_length=125)
     upvotes = models.IntegerField(null=True, default=0)
     python_version = models.CharField(max_length=5, null=False, blank=False, choices=version_choices)
     created_date = models.DateTimeField(null=False, blank=True, auto_now_add=True)
