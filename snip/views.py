@@ -134,6 +134,7 @@ def archive(request):
     return render(request, template_name, template_data)
 
 
+@login_required
 def mylogout(request):
     logout(request)
     return redirect(reverse("snip:index", args=(), kwargs={}))
@@ -155,10 +156,9 @@ def add_snippet(request):
     title = post_data.get('title')
     description = post_data.get('description')
     code = post_data.get('code')
-    author = post_data.get('author')
     python_version = post_data.get('python_version')
 
-    if not all([title, code, author, python_version]):
+    if not all([title, code, python_version]):
         # TODO: use messaging here
         return render(request, template_name, template_data)
 
@@ -166,6 +166,15 @@ def add_snippet(request):
     snippet.title = title
     snippet.description = description
     snippet.code = code
+    # create the author name
+    author = None
+    if request.user.first_name:
+        author = request.user.first_name
+    if author and request.user.last_name:
+        author = author + " " + request.user.last_name
+    if not author:
+        author = request.user.username
+
     snippet.author = author
     snippet.python_version = python_version
     snippet.save()
