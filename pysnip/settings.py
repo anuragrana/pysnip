@@ -151,3 +151,28 @@ LOGIN_URL = reverse_lazy('snip:index')
 
 # logout the user - invalidate the session - when browser is closed
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+GITHUB_SECRET = env("GITHUB_SECRET")
+GITHUB_CLIENT_ID = env("GITHUB_CLIENT_ID")
+
+try:
+    from .logger_settings import *
+except Exception as e:
+    print("Unable to load logger settings")
+    pass
+
+# these message tags will be used in bootstrap
+try:
+    from django.contrib.messages import constants as messages
+
+    MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-info',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+    }
+except Exception as e:
+    pass
+
+

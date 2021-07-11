@@ -14,6 +14,7 @@ import requests
 from .models import SnippetModel
 import logging
 import traceback
+from django.contrib import messages
 
 
 def index(request):
@@ -173,32 +174,28 @@ def add_snippet(request):
 
 
 def login_github(request):
-    client_id = '46ac58864d30dd7ffd36'
+    client_id = settings.GITHUB_CLIENT_ID
     scope = 'read:user'
-    state = 'somerandomnumber'  # to prevent csrf
+    state = 'somerandomstring123'  # to prevent csrf
     return redirect(
         'https://github.com/login/oauth/authorize?client_id={}&scope={}&state={}'.format(client_id,
                                                                                          scope, state,
                                                                                          ))
 
 
-def login_github_callback_dummy(request):
-    print(request.GET)
-
-
 def login_github_callback(request):
     # verify the state variable value for csrf
     code = request.GET.get('code', None)
-    print(request.GET)
 
     if not code:
-        print('code not present in request', request.GET)
-        return
+        messages.error(request, "Invalid Code received from Github Auth API");
+        logging.getLogger('error').error('code not present in request {}'.format(request.GET))
+        return redirect(reverse("snip:index", args=(), kwargs={}))
 
     # first redirect
     params = {
-        'client_id': '46ac58864d30dd7ffd36',
-        'client_secret': '1b0cc7f03d05ad98eafa024e50fd76ec8efcfeca',
+        'client_id': settings.GITHUB_CLIENT_ID,
+        'client_secret': settings.GITHUB_SECRET,
         'code': code,
         'Content-Type': 'application/json'
     }
@@ -210,9 +207,9 @@ def login_github_callback(request):
     result = requests.post('https://github.com/login/oauth/access_token', data=params, headers=headers)
     # print(result)
     # print(result.text)
-    print(result.json())
+    # print(result.json())
     token = result.json().get('access_token')
-
+    logging.getLogger('info').info('token received in response from github')
     # after getting the token, access the user api to get user details
     user_api_url = 'https://api.github.com/user'
     headers = {
@@ -220,18 +217,22 @@ def login_github_callback(request):
         'Accept': 'application/json'
     }
     result = requests.get(user_api_url, headers=headers)
-    print(result.json())
-
+    # print(result.json())
     user_data = result.json()
+    logging.getLogger('info').info('user data from github {}'.format(user_data))
     email = user_data.get('email', None)
     if not email:
-        return 'error'
+        messages.error(request, "Invalid data received from GitHub");
+        logging.getLogger('error').error('email not present in data received from github {}'.format(user_data))
+        return redirect(reverse("snip:index", args=(), kwargs={}))
+
     # get the user details, now login this user.
 
     try:
         user = User.objects.get(email=email)
-        print('user already in db')
+        logging.getLogger('info').info('user already exists in db')
     except User.DoesNotExist as e:
+        # if user does not exists in db, create a user and save it.
         name = user_data.get('name', None)
         if name:
             splitted_name = name.split(' ')
@@ -256,11 +257,12 @@ def login_github_callback(request):
         user.is_superuser = False
 
         user.save()
-        print('user created in db')
+        logging.getLogger('info').info('user created in db')
 
     except Exception as e:
+        messages.error(request, "Some error occurred while logging. Please let us know.")
         logging.getLogger('error').error(traceback.format_exc())
 
     login(request, user)
-
+    messages.success(request, "Login Successful");
     return redirect(reverse("snip:index", args=(), kwargs={}))
