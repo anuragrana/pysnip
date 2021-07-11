@@ -134,6 +134,11 @@ def archive(request):
     return render(request, template_name, template_data)
 
 
+def mylogin(request):
+    template_name = 'snip/login.html'
+    return render(request, template_name, {})
+
+
 @login_required
 def mylogout(request):
     logout(request)
@@ -175,7 +180,7 @@ def add_snippet(request):
     if not author:
         author = request.user.username
 
-    snippet.author = author
+    snippet.author_name = author
     snippet.python_version = python_version
     snippet.save()
 
@@ -243,6 +248,7 @@ def login_github_callback(request):
     except User.DoesNotExist as e:
         # if user does not exists in db, create a user and save it.
         name = user_data.get('name', None)
+        username = user_data.get('username', None)
         if name:
             splitted_name = name.split(' ')
             first_name = splitted_name[0]
@@ -256,8 +262,7 @@ def login_github_callback(request):
 
         # create user
         user = User()
-        # let's use the email as username
-        user.username = email
+        user.username = username
         user.email = email
         user.first_name = first_name
         user.last_name = last_name
@@ -275,3 +280,19 @@ def login_github_callback(request):
     login(request, user)
     messages.success(request, "Login Successful");
     return redirect(reverse("snip:index", args=(), kwargs={}))
+
+
+@login_required
+def author_page(request, author_username):
+    template_data = dict()
+    template_name = 'snip/author.html'
+    template_data['author'] = author_instance = User.objects.get(username=author_username)
+    template_data['all_snippets'] = SnippetModel.objects.filter(author_id=author_instance.id)
+
+    author_name = ''
+    if author_instance.first_name:
+        author_name = author_instance.first_name
+    else:
+        author_name = author_instance.username
+    template_data['author_name'] = author_name
+    return render(request, template_name, template_data)

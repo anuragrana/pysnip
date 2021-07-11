@@ -147,7 +147,7 @@ SITE_URL = "https://pythonsnippets.dev"
 SEO_KEYWORDS = "Python, Django, Python Code, Python Tricks, Python Snippets."
 
 # LOGIN_URL = '/accounts/login/' is used by login_required decorator
-LOGIN_URL = reverse_lazy('snip:index')
+LOGIN_URL = reverse_lazy('snip:mylogin')
 
 # logout the user - invalidate the session - when browser is closed
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True

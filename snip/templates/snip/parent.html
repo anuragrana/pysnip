@@ -10,6 +10,7 @@
       gtag('js', new Date());
 
       gtag('config', 'G-N7XZ7K1FMX');
+
     </script>
 
     <meta charset="UTF-8">
@@ -88,6 +89,11 @@
             font-size: 80%;
         }
 
+        .font80 {
+            font-size: 90%;
+        }
+
+
     </style>
 
 </head>
@@ -95,9 +101,7 @@
 
 <div class="row">
     <div class="col-md-1">
-        {% block menu_left %}
 
-        {% endblock menu_left %}
 
     </div>
     <div class="col-md-10 col-sm-12 ">
@@ -108,6 +112,10 @@
         {% block main %}
 
         {% endblock main %}
+
+        {% block footer %}
+        {% include 'snip/footer.html' %}
+        {% endblock footer %}
     </div>
     <div class="col-md-1">
 
@@ -115,10 +123,7 @@
 
 </div>
 
-<div class="row" style="margin-bottom:20px;">
-    <div class="col-md-12">
 
-    </div>
-</div>
+
 </body>
 </html>

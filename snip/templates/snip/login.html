@@ -1,0 +1,17 @@
+{% extends 'snip/parent.html' %}
+
+{% block main %}
+
+{% include 'snip/message.html' %}
+
+<div class="row font-monospace">
+    <div class="col-md-12 text-center">
+        <div style="padding:10px;">
+            <a href="{% url 'snip:login_github' %}" class="btn btn-lg pycolor"><i class="fa fa-github"></i> Login with
+                GitHub
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

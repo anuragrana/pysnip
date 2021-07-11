@@ -27,7 +27,9 @@
              style="padding: 10px 20px ;">
             Python Version: {{snippet.python_version}}
             &nbsp;&nbsp;&nbsp;
-            Author: {{snippet.author}}
+            Author:
+            <a href="{% url 'snip:author_page' snippet.author.username %}" target="_blank" class="white">
+                {{snippet.get_author}}</a>
             &nbsp;&nbsp;&nbsp;
             Created Date: {{snippet.created_date | date:'d M Y'}}
         </div>
@@ -45,44 +47,45 @@
         </div>
     </div>
 </div>
-<div class="row" style="background-color:gray;margin:0px 0px;">
-    <div class="col-md-6  font-monospace white font80"
-         style="padding: 5px 15px;">
+<div class="row font80" style="background-color:gray;margin:0px 0px;">
+    <div class="col-md-6  font-monospace white "
+         style="padding: 10px 15px;">
 
-        <button class="btn btn-sm white" onclick="copySnippet()" title="Copy the code on clipboard">
+        <a class="white" onclick="copySnippet()" title="Copy the code on clipboard" style="cursor:pointer;">
             Copy
             <i class="fa fa-copy" id="copyIcon"></i>
             <i class="fa fa-check" id="checkIcon" style="display:none;"></i>
-        </button>
+        </a>
 
         |
 
         Download as:
         <a href="{% url 'snip:download_code_as_file' snippet.sid %}"
            target="_blank" title="Download as python file"
-           class="btn btn-sm white">.py file <i class="fa fa-download"></i></a>
+           class="white">.py file <i class="fa fa-download"></i></a>
 
+        &nbsp;
         <a href="{% url 'snip:download_code_as_image' snippet.sid %}"
            target="_blank" title="Download as PNG Image"
-           class="btn btn-sm white">PNG <i class="fa fa-image"></i></a>
+           class="white">PNG <i class="fa fa-image"></i></a>
     </div>
 
-    <div class="col-md-6  font-monospace text-end white font80"
-         style="padding: 5px 15px;">
+    <div class="col-md-6  font-monospace text-end white "
+         style="padding: 10px 15px;">
 
         Share on:
 
         <a href="https://www.facebook.com/sharer.php?u={{page_canonical_url}}"
            target="_blank"
-           class="btn btn-sm white">Facebook <i class="fa fa-facebook-square"></i></a>
-
+           class="white">Facebook <i class="fa fa-facebook-square"></i></a>
+        &nbsp;
         <a href="https://twitter.com/intent/tweet?text={{snippet.title}}&url={{page_canonical_url}}"
            target="_blank"
-           class="btn btn-sm white">Twitter <i class="fa fa-twitter"></i></a>
-
+           class="white">Twitter <i class="fa fa-twitter"></i></a>
+        &nbsp;
         <a href="https://www.linkedin.com/shareArticle?mini=true&url={{page_canonical_url}}&title={{snippet.title}}&summary={{snippet.description}}&source={{project_name_spaced}}"
            target="_blank"
-           class="btn btn-sm white">LinkedIn <i class="fa fa-linkedin-square"></i></a>
+           class="white">LinkedIn <i class="fa fa-linkedin-square"></i></a>
 
     </div>
 </div>
@@ -129,6 +132,7 @@
         }, 2000);
 
     }
+
 
 
 

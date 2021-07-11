@@ -1,6 +1,7 @@
 from django.db import models
 import os
 import uuid
+from django.conf import settings
 
 
 def upload_path(instance, filename):
@@ -28,8 +29,10 @@ class SnippetModel(models.Model):
     description = models.CharField(null=True, blank=True, max_length=1024)
     code = models.TextField(null=False, blank=False)
     image = models.ImageField(upload_to=upload_path, null=True, blank=True, max_length=1000)
-    # Name of the Author
-    author = models.CharField(null=False, blank=True, max_length=125)
+    # User Id from Auth User table
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.DO_NOTHING)
+    # Author name - String - Can be set by Admin to override author or when copying snippet from Internet
+    author_name = models.CharField(null=True, blank=True, max_length=125)
     upvotes = models.IntegerField(null=True, default=0)
     python_version = models.CharField(max_length=5, null=False, blank=False, choices=version_choices)
     created_date = models.DateTimeField(null=False, blank=True, auto_now_add=True)
@@ -41,3 +44,19 @@ class SnippetModel(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    def get_author(self):
+        author = ''
+
+        if self.author_name:
+            return self.author_name
+
+        if self.author.first_name:
+            author = self.author.first_name
+        if author and self.author.last_name:
+            author = author + " " + self.author.last_name
+
+        if not author:
+            author = self.author.username
+
+        return author
