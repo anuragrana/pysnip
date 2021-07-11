@@ -1,5 +1,3 @@
-{% load socialaccount %}
-{% load account %}
 
 <div class="row font-monospace" style="margin:0px 0px;background-color:#bbbbbb;">
     <div class="col-md-6" style="padding:10px;">
@@ -45,24 +43,10 @@
             </ul>
         </div>
         {% else %}
-        <div class="dropdown" style="display:inline-block;">
-            <button class="btn btn-sm dropdown-toggle"
-                    type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                Login
-            </button>
-            <ul class="dropdown-menu "
-                aria-labelledby="dropdownMenuButton1" style="font-size:90%;">
-                <li><a class="dropdown-item "
-                       href="{% provider_login_url 'github' %}">
-                    Login with GitHub <i class="fa fa-github"></i>
-                </a></li>
-
-                <li><a class="dropdown-item "
-                       href="{% provider_login_url 'linkedin_oauth2' %}">
-                    Login with LinkedIn <i class="fa fa-linkedin-square"></i>
-                </a></li>
-            </ul>
+        <div style="margin-top:5px;">
+            <a href="{% url 'snip:login_github' %}" class="white">
+                Login with GitHub <i class="fa fa-github"></i>
+            </a>
         </div>
         {% endif %}
     </div>

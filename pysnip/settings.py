@@ -49,13 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'snip',
-    'django.contrib.sites',  # required for allauth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.linkedin_oauth2',
-
 ]
 
 MIDDLEWARE = [
@@ -153,45 +146,8 @@ SITE_DESC = "Useful Python Snippets. Curated list of Python Snippets. Python Tri
 SITE_URL = "https://pythonsnippets.dev"
 SEO_KEYWORDS = "Python, Django, Python Code, Python Tricks, Python Snippets."
 
-# social OAuth
-# https://testdriven.io/blog/django-social-auth/
-# https://kodnito.com/posts/django-authentication-github/
-AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
-
-# GitHub Auth settings
-# https://github.com/settings/applications/1661252
-SITE_ID = 1
-ACCOUNT_EMAIL_VERIFICATION = "none"
-LOGIN_REDIRECT_URL = reverse_lazy('snip:mylogin')
-ACCOUNT_LOGOUT_ON_GET = True
-
-# Linkedin Authentication Setting
-# https://python.plainenglish.io/why-you-should-let-the-user-to-authenticate-with-social-accounts-df30b0ba4793
-# https://www.linkedin.com/developers/apps/73668413/auth
-SOCIALACCOUNT_PROVIDERS = {
-    'linkedin': {
-        'SCOPE': [
-            'r_basicprofile',
-            'r_emailaddress'
-        ],
-        'PROFILE_FIELDS': [
-            'id',
-            'first-name',
-            'last-name',
-            'email-address',
-            'picture-url',
-            'public-profile-url',
-        ]
-    }
-}
-
-# email is primary key in email_Address table. hence if login from github as well as linkedin,
-# same email can not be twice in email-address table. Hence there will be no email address against
-# second user created with same emailId.
-
-
 # LOGIN_URL = '/accounts/login/' is used by login_required decorator
-LOGIN_URL = reverse_lazy('snip:mylogin')
+LOGIN_URL = reverse_lazy('snip:index')
+
+# logout the user - invalidate the session - when browser is closed
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
