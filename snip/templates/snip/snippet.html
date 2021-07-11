@@ -2,6 +2,8 @@
 
 {% block main %}
 
+{% include 'snip/message.html' %}
+
 <!-- this 12px padding is required so that code block and this block can be of same width -->
 <div style="padding: 0px 12px;">
     <div class="row" title="Snippet Title">
@@ -23,7 +25,7 @@
     {% endif %}
 
     <div class="row" style="background-color:gray">
-        <div class="col-md-12  font-monospace font80 white"
+        <div class="col-md-10  font-monospace font80 white"
              style="padding: 10px 20px ;">
             Python Version: {{snippet.python_version}}
             &nbsp;&nbsp;&nbsp;
@@ -33,7 +35,31 @@
             &nbsp;&nbsp;&nbsp;
             Created Date: {{snippet.created_date | date:'d M Y'}}
         </div>
+
+        {% if user.is_authenticated %}
+        <div class="col-md-2 font-monospace font90 white text-end"
+             style="padding: 10px 20px ;">
+
+            <a href="{% url 'snip:report_snippet' snippet.sid %}"
+               title="Report this Snippet"
+               class="white"><i class="fa fa-exclamation-triangle"></i></a>
+            &nbsp;
+            <!-- no downvote concept. User can only upvote once and then can downvote once -->
+            {% if already_upvoted %}
+            <a href="{% url 'snip:upvote_snippet' snippet.sid %}"
+               title="Downvote this Snippet"
+               class="white"><i class="fa fa-thumbs-o-down"></i></a>
+            {% else %}
+            <a href="{% url 'snip:downvote_snippet' snippet.sid %}"
+               title="Upvote this Snippet"
+               class="white"><i class="fa fa-thumbs-o-up"></i></a>
+            {% endif %}
+
+        </div>
+        {% endif %}
     </div>
+
+
 </div>
 
 
@@ -132,6 +158,8 @@
         }, 2000);
 
     }
+
+
 
 
 

@@ -14,6 +14,9 @@ urlpatterns = [
     path(r'download/text/<int:snippet_id>/', views.download_code_as_file, name='download_code_as_file'),
     path(r'download/image/<int:snippet_id>/', views.download_code_as_image, name='download_code_as_image'),
     path(r'author/<str:author_username>/', views.author_page, name='author_page'),
+    path(r'snippet/upvote/<int:snippet_id>/', views.upvote_snippet, name='upvote_snippet'),
+    path(r'snippet/downvote/<int:snippet_id>/', views.downvote_snippet, name='downvote_snippet'),
+    path(r'snippet/report/<int:snippet_id>/', views.report_snippet, name='report_snippet'),
 ]
 
 urlpatterns += [

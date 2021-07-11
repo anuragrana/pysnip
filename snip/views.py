@@ -282,7 +282,6 @@ def login_github_callback(request):
     return redirect(reverse("snip:index", args=(), kwargs={}))
 
 
-@login_required
 def author_page(request, author_username):
     template_data = dict()
     template_name = 'snip/author.html'
@@ -295,4 +294,31 @@ def author_page(request, author_username):
     else:
         author_name = author_instance.username
     template_data['author_name'] = author_name
+
+    # if author_username is the current user logged in i.e. if logged in user wants to see his/her details
+    # fetch those details here and do it.
+    # add conditions on HTML if required.
+    template_data['logged_in_user_data'] = 'GET DATA HERE'
+
     return render(request, template_name, template_data)
+
+
+@login_required
+def upvote_snippet(request, snippet_id):
+    snippet = SnippetModel.objects.get(sid=snippet_id)
+    messages.success(request, 'Feature coming soon')
+    return redirect(reverse("snip:snippet", args=(snippet.sid,), kwargs={}))
+
+
+@login_required
+def downvote_snippet(request, snippet_id):
+    snippet = SnippetModel.objects.get(sid=snippet_id)
+    messages.success(request, 'Feature coming soon')
+    return redirect(reverse("snip:snippet", args=(snippet.sid,), kwargs={}))
+
+
+@login_required
+def report_snippet(request, snippet_id):
+    snippet = SnippetModel.objects.get(sid=snippet_id)
+    messages.error(request, 'Please drop a mail at code108labs@gmail.com to report this.')
+    return redirect(reverse("snip:snippet", args=(snippet.sid,), kwargs={}))
