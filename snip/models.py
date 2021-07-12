@@ -11,7 +11,6 @@ def upload_path(instance, filename):
 
 
 class SnippetModel(models.Model):
-
     version_choices = (
         ('2.7', '2.7'),
         ('3.0', '3.0'),
@@ -60,3 +59,18 @@ class SnippetModel(models.Model):
             author = self.author.username
 
         return author
+
+
+class UpvoteModel(models.Model):
+    # A single entry in this model means 1 upvote.
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, blank=True, on_delete=models.DO_NOTHING)
+    snippet = models.ForeignKey('SnippetModel', null=False, blank=True, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        app_label = "snip"
+        db_table = "snip_upvotes"
+
+        unique_together = [['user', 'snippet']]
+
+    def __str__(self):
+        return str(self.user.username) + ' - ' + str(self.snippet.title)

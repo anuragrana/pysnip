@@ -9,7 +9,7 @@
         <div style="padding:10px;" class="pycolor">
             <i class="fa fa-archive"></i> Recent Snippets
         </div>
-        <div style="padding:10px; font-size:90%" class="">
+        <div style="padding:10px;" class="font90">
             <ul class="list-group list-group-flush">
                 {% for snip in recent_snippets %}
                 <li class="list-group-item ">
@@ -26,17 +26,19 @@
         <div style="padding:10px;" class="pycolor">
             <i class="fa fa-star"></i> Top Rated Snippets
         </div>
-        <div style="padding:10px; font-size:90%;" class="">
+        <div style="padding:10px;" class="font90" >
             <ul class="list-group list-group-flush">
-                {% for snip in recent_snippets %}
-                <li class="list-group-item d-flex justify-content-between align-items-center ">
+                {% for snip in top_rated_snippets %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
                     <a href="{% url 'snip:snippet' snip.sid %}"
                        style="text-decoration:none;">
                         <i class="fa fa-file-code-o"></i> {{snip.title}}
                     </a>
-                    <!-- upvote count will be enabled later
-                    <span class="badge bg-primary rounded-pill" title="upvotes">14</span>
-                    -->
+
+                    <span class="badge rounded-pill pycolor-reverse font" title="upvotes" style="padding:5px 10px;">
+                        {{snip.upvotes}}
+                    </span>
+
                 </li>
                 {% endfor %}
             </ul>
@@ -50,15 +52,21 @@
         <div style="padding:10px;" class="pycolor">
             <i class="fa fa-users"></i> About
         </div>
-        <div style="padding:10px; font-size:90%" class="">
-            Coming soon.
+        <div style="padding:10px;" class="font90">
+            Curated list of Useful Python Snippets.<br>
+            Browse through them. Use them in your project. If found useful, upvote them.<br>
+            You can downvote a snippet only if you had upvoted it previously.<br>
+            You can copy the snippet or download it as py file or as png image.<br>
+            Please share them on Facebook, Twitter, LinkedIn or Whatsapp<br>
+            <br>
+            Please reach us at code108labs at gmail.com in case of any query, concern or feedback.
         </div>
     </div>
     <div class="col-md-6">
         <div style="padding:10px;" class="pycolor">
             <i class="fa fa-thumbs-up"></i> Support Us
         </div>
-        <div style="padding:10px;font-size:90%" class="">
+        <div style="padding:10px;" class="font90">
             Please help us keeping this website ads free. <br>
             Support us by: <br>
             1. Visiting the <a href="https://amzn.to/3hsbf1O" target="_blank">Amazon</a> using this

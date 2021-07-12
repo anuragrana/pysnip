@@ -11,10 +11,11 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import requests
-from .models import SnippetModel
+from .models import SnippetModel, UpvoteModel
 import logging
 import traceback
 from django.contrib import messages
+from django.db.models import Q
 
 
 def index(request):
@@ -22,6 +23,9 @@ def index(request):
     template_data = dict()
     recent_snippets = SnippetModel.objects.all().order_by('-created_date')[:10]
     template_data['recent_snippets'] = recent_snippets
+
+    top_rated_snippets = SnippetModel.objects.all().order_by('-upvotes')[:10]
+    template_data['top_rated_snippets'] = top_rated_snippets
 
     # since on snippet page, seo data is populated by snippet model instance attributes.
     # to re-use the variables in template, we are assigning home page seo data in snippet variable
@@ -49,12 +53,14 @@ def get_snippet(request, snippet_id):
         prestyles="padding-left:10px"  # for gap between line number and code
     )
 
-    print(snippet)
+    # print(snippet)
     code = snippet.code
 
     result = highlight(code, lexer, formatter)
     # print(result)
 
+    already_upvoted = UpvoteModel.objects.filter(Q(snippet=snippet) & Q(user=request.user)).exists()
+    template_data['already_upvoted'] = already_upvoted
     # TODO: store the highlighted code in DB once and reuse it
     template_data['highlighted_code'] = result
     template_data['snippet'] = snippet
@@ -305,15 +311,56 @@ def author_page(request, author_username):
 
 @login_required
 def upvote_snippet(request, snippet_id):
-    snippet = SnippetModel.objects.get(sid=snippet_id)
-    messages.success(request, 'Feature coming soon')
+    snippet = None
+    try:
+        snippet = SnippetModel.objects.get(sid=snippet_id)
+    except SnippetModel.DoesNotExist as e:
+        logging.getLogger('error').error('Snippet does not exists {}'.format(snippet_id))
+        return redirect(reverse("snip:index", args=(), kwargs={}))
+
+    # add the upvote to Upvotes Table
+    upvote_instance = UpvoteModel()
+    upvote_instance.user = request.user
+    upvote_instance.snippet = snippet
+    try:
+        upvote_instance.save()
+        # exception if this combination already exists
+    except Exception as e:
+        logging.getLogger('error').error(traceback.format_exc())
+        messages.success(request, 'Can not upvote')
+        return redirect(reverse("snip:snippet", args=(snippet.sid,), kwargs={}))
+
+    # get total upvotes for this snippet
+    snippet_upvote_count = UpvoteModel.objects.filter(snippet=snippet).count()
+    # update the snippet count in snippet table.
+    # store once. use multiple times when snippet is read.
+    snippet.upvotes = snippet_upvote_count
+    snippet.save()
+
+    messages.success(request, 'Upvoted')
     return redirect(reverse("snip:snippet", args=(snippet.sid,), kwargs={}))
 
 
 @login_required
 def downvote_snippet(request, snippet_id):
-    snippet = SnippetModel.objects.get(sid=snippet_id)
-    messages.success(request, 'Feature coming soon')
+    snippet = None
+    try:
+        snippet = SnippetModel.objects.get(sid=snippet_id)
+    except SnippetModel.DoesNotExist as e:
+        logging.getLogger('error').error('Snippet does not exists {}'.format(snippet_id))
+        return redirect(reverse("snip:index", args=(), kwargs={}))
+
+    # try to delete a record
+    UpvoteModel.objects.filter(Q(snippet=snippet) & Q(user=request.user)).delete()
+
+    # get total upvotes for this snippet
+    snippet_upvote_count = UpvoteModel.objects.filter(snippet=snippet).count()
+    # update the snippet count in snippet table.
+    # store once. use multiple times when snippet is read.
+    snippet.upvotes = snippet_upvote_count
+    snippet.save()
+
+    messages.warning(request, 'Downvoted')
     return redirect(reverse("snip:snippet", args=(snippet.sid,), kwargs={}))
 
 

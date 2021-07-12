@@ -27,13 +27,23 @@
     <div class="row" style="background-color:gray">
         <div class="col-md-10  font-monospace font80 white"
              style="padding: 10px 20px ;">
-            Python Version: {{snippet.python_version}}
-            &nbsp;&nbsp;&nbsp;
-            Author:
+            <span title="Python Version">
+            Python: {{snippet.python_version}}
+            </span>
+            &nbsp;&nbsp;
+            <span title="Author">
+                <i class="fa fa-user"></i>
             <a href="{% url 'snip:author_page' snippet.author.username %}" target="_blank" class="white">
                 {{snippet.get_author}}</a>
-            &nbsp;&nbsp;&nbsp;
-            Created Date: {{snippet.created_date | date:'d M Y'}}
+            </span>
+            &nbsp;&nbsp;
+            <span title="Creation Date">
+                <i class="fa fa-calendar"></i> {{snippet.created_date | date:'d M Y'}}
+            </span>
+            &nbsp;
+            <span title="Total Upvotes So Far">
+                <i class="fa fa-thumbs-up"></i> {{snippet.upvotes}}
+            </span>
         </div>
 
         {% if user.is_authenticated %}
@@ -46,13 +56,13 @@
             &nbsp;
             <!-- no downvote concept. User can only upvote once and then can downvote once -->
             {% if already_upvoted %}
-            <a href="{% url 'snip:upvote_snippet' snippet.sid %}"
-               title="Downvote this Snippet"
-               class="white"><i class="fa fa-thumbs-o-down"></i></a>
-            {% else %}
             <a href="{% url 'snip:downvote_snippet' snippet.sid %}"
+               title="Downvote this Snippet"
+               class="white"><i class="fa fa-thumbs-down"></i></a>
+            {% else %}
+            <a href="{% url 'snip:upvote_snippet' snippet.sid %}"
                title="Upvote this Snippet"
-               class="white"><i class="fa fa-thumbs-o-up"></i></a>
+               class="white"><i class="fa fa-thumbs-up"></i></a>
             {% endif %}
 
         </div>
@@ -118,7 +128,6 @@
            class="white">WA <i class="fa fa-whatsapp"></i></a>
 
 
-
     </div>
 </div>
 
@@ -164,6 +173,7 @@
         }, 2000);
 
     }
+
 
 
 
