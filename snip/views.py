@@ -59,7 +59,9 @@ def get_snippet(request, snippet_id):
     result = highlight(code, lexer, formatter)
     # print(result)
 
-    already_upvoted = UpvoteModel.objects.filter(Q(snippet=snippet) & Q(user=request.user)).exists()
+    already_upvoted = False
+    if not request.user.is_anonymous:
+        already_upvoted = UpvoteModel.objects.filter(Q(snippet=snippet) & Q(user=request.user)).exists()
     template_data['already_upvoted'] = already_upvoted
     # TODO: store the highlighted code in DB once and reuse it
     template_data['highlighted_code'] = result
