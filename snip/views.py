@@ -182,6 +182,7 @@ def add_snippet(request):
     snippet.title = title
     snippet.description = description
     snippet.code = code
+    snippet.author = request.user
     # create the author name
     author = None
     if request.user.first_name:
