@@ -46,10 +46,10 @@
             </span>
         </div>
 
-        {% if user.is_authenticated %}
+
         <div class="col-md-2 font-monospace font90 white text-end"
              style="padding: 10px 20px ;">
-
+        {% if user.is_authenticated %}
             <a href="{% url 'snip:report_snippet' snippet.sid %}"
                title="Report this Snippet"
                class="white"><i class="fa fa-exclamation-triangle"></i></a>
@@ -65,8 +65,12 @@
                class="white"><i class="fa fa-thumbs-up"></i></a>
             {% endif %}
 
-        </div>
+        {% else %}
+            Login to upvote
         {% endif %}
+
+        </div>
+
     </div>
 
 

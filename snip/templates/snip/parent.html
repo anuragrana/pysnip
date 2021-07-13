@@ -47,7 +47,7 @@
     <meta property="og:description"
           content="{{snippet.description}} {{seo_keywords}}">
     <meta property="og:image"
-          content="{% if snippet.image %}{{snippet.image}}{% else %}{{site_image}}{% endif %}">
+          content="{% if snippet.image %}{{snippet.image.url}}{% else %}{{site_image}}{% endif %}">
     <meta property="og:updated_time" content="{% now 'SHORT_DATETIME_FORMAT' %}">
 
 

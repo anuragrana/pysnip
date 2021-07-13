@@ -5,3 +5,4 @@ snip/__pycache__/
 static/*
 logs/*.log
 logs
+media/*

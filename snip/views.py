@@ -16,6 +16,8 @@ import logging
 import traceback
 from django.contrib import messages
 from django.db.models import Q
+import io
+from django.core.files.images import ImageFile
 
 
 def index(request):
@@ -42,9 +44,28 @@ def get_snippet(request, snippet_id):
     template_data = dict()
 
     snippet = SnippetModel.objects.get(sid=snippet_id)
-    # create 404 page
+    # create 404 page here
 
     lexer = get_lexer_by_name("python", stripall=True)
+
+    # if image does not exists in snippet instance, create one, save it
+    if not snippet.image:
+        img_formatter = ImageFormatter(
+            image_format="PNG",
+            cssclass="highlight",
+            style="fruity",
+            noclasses=True,
+            linenos=False,
+        )
+        img_result = highlight(snippet.code, lexer, img_formatter)
+        # img_result is - bytes
+        # https://stackoverflow.com/a/62624236/2291289
+        filename = slugify(snippet.title) + ".png"
+        image = ImageFile(io.BytesIO(img_result), name=filename)
+        snippet.image = image
+        snippet.save()
+
+    # HTML formatter
     formatter = HtmlFormatter(
         linenos='table',
         cssclass="highlight",
@@ -53,10 +74,7 @@ def get_snippet(request, snippet_id):
         prestyles="padding-left:10px"  # for gap between line number and code
     )
 
-    # print(snippet)
-    code = snippet.code
-
-    result = highlight(code, lexer, formatter)
+    result = highlight(snippet.code, lexer, formatter)
     # print(result)
 
     already_upvoted = False
@@ -114,23 +132,8 @@ def download_code_as_file(request, snippet_id):
 
 def download_code_as_image(request, snippet_id):
     snippet = SnippetModel.objects.get(sid=snippet_id)
-
-    # TODO: Return the already stored image file of this snippet
-
     filename = slugify(snippet.title) + ".png"
-
-    lexer = get_lexer_by_name("python", stripall=True)
-    formatter = ImageFormatter(
-        image_format="PNG",
-        cssclass="highlight",
-        style="fruity",
-        noclasses=True,
-        linenos=False,
-    )
-    result = highlight(snippet.code, lexer, formatter)
-    # print(result)
-    print(type(result))
-    response = HttpResponse(result, content_type='image/png')
+    response = HttpResponse(snippet.image.read(), content_type='image/png')
     response['Content-Disposition'] = 'attachment; filename={0}'.format(filename)
     return response
 
