@@ -1,12 +1,13 @@
-Setup:  
+**Setup**:  
 
+Starting with Django:  
 https://pythoncircle.com/post/26/hello-word-in-django-how-to-start-with-django/
 
 Create a virtual environment:
 https://pythoncircle.com/post/404/virtual-environment-in-python-a-pocket-guide/
 
 
-Install packages:  
+**Install packages:**  
 Use requirements.txt file or install below packages one by one.
 - Pillow  
 - Django  
