@@ -19,3 +19,7 @@ Local Env:
 admin `Password#999`  
 admin@yopmail.com
 
+
+**Login with Github:**
+
+https://pythoncircle.com/post/747/integrating-github-login-in-django-without-allauth-package/
